@@ -37,7 +37,9 @@ const itemsReducer = createReducer([], {
     ...state,
   ],
   [editProductSuccess]: (state, { payload }) => {
-    const prod = state.find(({ id }) => id === payload.id);
+    const prod = state.find(
+      ({ id }) => id === Number(payload.id)
+    );
 
     prod.name = payload.name;
     prod.imageUrl = payload.imageUrl;
@@ -57,6 +59,12 @@ const detailsReducer = createReducer([], {
   },
   [addComment]: (state, { payload }) => {
     state.comments = [...state.comments, payload];
+  },
+  [editProductSuccess]: (state, { payload }) => {
+    state.name = payload.name;
+    state.imageUrl = payload.imageUrl;
+    state.descr = payload.descr;
+    state.count = payload.count;
   },
 });
 
